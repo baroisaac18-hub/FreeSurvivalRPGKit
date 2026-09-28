@@ -51,10 +51,10 @@ public class PlayerController : MonoBehaviour {
             joystickName = null;
 
             // If we press left mouse button
-            if (Input.GetMouseButtonDown(0))
+            if (MobileInputManager.GetMouseButtonDown(0))
             {
                 // Shoot out a ray
-                Ray ray = cam.ScreenPointToRay(Input.mousePosition);
+                Ray ray = cam.ScreenPointToRay(MobileInputManager.mousePosition);
                 RaycastHit hit;
 
                 // If we hit
@@ -66,10 +66,10 @@ public class PlayerController : MonoBehaviour {
             }
 
             // If we press right mouse button
-            if (Input.GetMouseButtonDown(1))
+            if (MobileInputManager.GetMouseButtonDown(1))
             {
                 // Shoot out a ray
-                Ray ray = cam.ScreenPointToRay(Input.mousePosition);
+                Ray ray = cam.ScreenPointToRay(MobileInputManager.mousePosition);
                 RaycastHit hit;
 
                 // If we hit
@@ -99,7 +99,7 @@ public class PlayerController : MonoBehaviour {
                         Debug.Log("Enemy in range " + focus.gameObject.name);
 
                         // click
-                        if (Input.GetMouseButtonDown(1))
+                        if (MobileInputManager.GetMouseButtonDown(1))
                         {
                             // Call Interact
                             focus.gameObject.GetComponent<Enemy>().Interact();
@@ -121,7 +121,7 @@ public class PlayerController : MonoBehaviour {
             // Ww create a list of all connected joysticks
 
             List<string> controllers = new List<string>();
-            controllers.AddRange(Input.GetJoystickNames());
+            controllers.AddRange(MobileInputManager.GetJoystickNames());
 
             // Prevent bug on first play mode
             if (controllers.Count == 0) controllers.Add("");
@@ -134,8 +134,8 @@ public class PlayerController : MonoBehaviour {
                 Debug.Log("Using Controller: " + joystickName);
 
                 // WASD
-                float h = Input.GetAxis("Horizontal Joystick");
-                float v = Input.GetAxis("Vertical Joystick");
+                float h = MobileInputManager.GetAxis("Horizontal Joystick");
+                float v = MobileInputManager.GetAxis("Vertical Joystick");
 
                 if (h > 0.1f || h < -0.1f || v > 0.1f || v < -0.1f)
                 {
@@ -150,8 +150,8 @@ public class PlayerController : MonoBehaviour {
                 Debug.Log("Using Keyboard");
 
                 // WASD
-                float h = Input.GetAxis("Horizontal");
-                float v = Input.GetAxis("Vertical");
+                float h = MobileInputManager.GetAxis("Horizontal");
+                float v = MobileInputManager.GetAxis("Vertical");
 
                 if (h > 0.1f || h < -0.1f || v > 0.1f || v < -0.1f)
                 {
@@ -174,7 +174,7 @@ public class PlayerController : MonoBehaviour {
             if (ingameObj.transform.tag == "Item")
             {
                 Debug.Log("Press Keyboard >E< or Joystick >X< to interact with: " + ingameObj.name);
-                if (Input.GetButtonDown("Interact"))
+                if (MobileInputManager.GetButtonDown("Interact"))
                 {
                     // Call Interact (Pick up)
                     ingameObj.GetComponent<ItemPickup>().Interact();
@@ -190,7 +190,7 @@ public class PlayerController : MonoBehaviour {
 
                 Debug.Log("Enemy in range " + gameObject.name);
 
-                if (Input.GetButtonDown("Interact"))
+                if (MobileInputManager.GetButtonDown("Interact"))
                 {
                     // Call Interact
                     ingameObj.gameObject.GetComponent<Enemy>().Interact();
