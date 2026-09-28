@@ -23,11 +23,11 @@ public class Minimap : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetButtonDown("MinimapZoom"))
-            ZoomOut();
-
-        if (Input.GetButtonDown("MinimapZoomOut"))
+        if (MobileInputManager.GetButtonDown("MinimapZoom"))
             ZoomIn();
+
+        if (MobileInputManager.GetButtonDown("MinimapZoomOut"))
+            ZoomOut();
     }
 
     void LateUpdate ()
