@@ -32,9 +32,9 @@ public class CameraController : MonoBehaviour {
         PlayerController pController = target.gameObject.GetComponent<PlayerController>();
         float scroll;
         if (pController.usingJoystick)
-            scroll = Input.GetAxisRaw("Mouse ScrollWheel Joystick") * zoomSensitivity;
+            scroll = MobileInputManager.GetAxisRaw("Mouse ScrollWheel Joystick") * zoomSensitivity;
         else
-            scroll = Input.GetAxisRaw("Mouse ScrollWheel") * zoomSensitivity;
+            scroll = MobileInputManager.GetAxisRaw("Mouse ScrollWheel") * zoomSensitivity;
 
         if (scroll != 0f)
 		{
@@ -54,23 +54,23 @@ public class CameraController : MonoBehaviour {
         if (pController.pointClickMovement)
         {
             float yawInput;
-            yawInput = Input.GetAxisRaw("Horizontal");
+            yawInput = MobileInputManager.GetAxisRaw("Horizontal");
             transform.RotateAround(target.position, Vector3.up, -yawInput * yawSpeed * Time.deltaTime);
         }
         else
         {
             // keyboard
-            if (Input.GetMouseButton(1) && !pController.usingJoystick)
+            if (MobileInputManager.GetMouseButton(1) && !pController.usingJoystick)
             {
                 float yawInput;
-                yawInput = Input.GetAxisRaw("Mouse X");
+                yawInput = MobileInputManager.GetAxisRaw("Mouse X");
                 transform.RotateAround(target.position, Vector3.up, -yawInput * yawSpeed * Time.deltaTime);
             }
             // joystick
             else
             {
                 float yawInput;
-                yawInput = Input.GetAxisRaw("Joystick Camera Rotate");
+                yawInput = MobileInputManager.GetAxisRaw("Joystick Camera Rotate");
                 transform.RotateAround(target.position, Vector3.up, -yawInput * yawSpeed * Time.deltaTime);
             }
         }            
