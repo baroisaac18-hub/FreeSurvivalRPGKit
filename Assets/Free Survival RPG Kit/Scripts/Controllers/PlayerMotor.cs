@@ -28,8 +28,8 @@ public class PlayerMotor : MonoBehaviour {
         {
             // WASD movement
             Vector3 goal = transform.position
-                  + Camera.main.transform.right * Input.GetAxis("Horizontal")
-                  + Camera.main.transform.forward * Input.GetAxis("Vertical");
+                  + Camera.main.transform.right * MobileInputManager.GetAxis("Horizontal")
+                  + Camera.main.transform.forward * MobileInputManager.GetAxis("Vertical");
             
             // move our agent to goal/destination
             agent.SetDestination(goal);
@@ -38,8 +38,8 @@ public class PlayerMotor : MonoBehaviour {
         {
             // Joystick Axis movement
             Vector3 goal = transform.position
-                 + Camera.main.transform.right * Input.GetAxis("Horizontal Joystick")
-                 + Camera.main.transform.forward * Input.GetAxis("Vertical Joystick");
+                 + Camera.main.transform.right * MobileInputManager.GetAxis("Horizontal Joystick")
+                 + Camera.main.transform.forward * MobileInputManager.GetAxis("Vertical Joystick");
            
             // move our agent to goal/destination
             agent.SetDestination(goal);
