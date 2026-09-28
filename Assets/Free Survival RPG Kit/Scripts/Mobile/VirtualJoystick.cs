@@ -3,8 +3,8 @@ using UnityEngine.EventSystems;
 
 public class VirtualJoystick : MonoBehaviour, IPointerDownHandler, IDragHandler, IPointerUpHandler
 {
-    [SerializeField] private RectTransform background;
-    [SerializeField] private RectTransform handle;
+    [SerializeField] public RectTransform background;
+    [SerializeField] public RectTransform handle;
     [SerializeField] private float range = 100f;
 
     private Vector2 inputVec;
@@ -58,4 +58,6 @@ public class VirtualJoystick : MonoBehaviour, IPointerDownHandler, IDragHandler,
         }
         else zoom = 0f;
     }
+
+    void LateUpdate() { WasDragStarted = false; }
 }
